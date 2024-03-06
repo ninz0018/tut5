@@ -36,4 +36,7 @@ $(document).on('click','#clr',function(e){
     $("#subj").val("");
     $("#gra").val("");
 })
-
+$(document).on('click','#clrn',function(g) {
+    g.preventDefault();
+    $("#names").val("");
+})
