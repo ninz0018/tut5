@@ -49,11 +49,29 @@ $(document).on('submit','#grades',function(e){
             
             gra = parseInt(g);
             
-            $("#grad").append(`<div> ${gra}</div>`);
+            $('#grad').append('<div class="ent">' + gra + '</div>');
+          
+            calculateAverage();
         }
     }
     
 })
+
+function calculateAverage() {
+    let total = 0;
+    let count = 0;
+    $('.ent').each(function() {
+      total += parseInt($(this).text());
+      count++;
+    });
+    let average = total / count;
+    $('#aver').text(average);
+}
+
+$(document).on('click','#clgrad',function(){
+    $("$gra").val("");
+})
+
 $(document).on('click','#clr',function(){
     Swal.fire({
         title: "Restore all Subject?",
@@ -96,6 +114,7 @@ $(document).on('click','#clres',function(a) {
             $("#sub1").html("");
             $("#grad").html("");
             $("#rate").html("");
+            $("#aver").html("");
           Swal.fire({
             title: "Cleared!",
             text: "Your file has been cleared.",
@@ -106,21 +125,7 @@ $(document).on('click','#clres',function(a) {
     
 })
 
-$(document).ready(function(){
-    $('#ent').on('click', function(){
-      var number = $('#gra').val();
-      $('#grad').append('<li class="ent">' + number + '</li>');
-      calculateTotal();
-    });
 
-    function calculateTotal() {
-      var total = 0;
-      $('.ent').each(function() {
-        total += parseFloat($(this).text());
-      });
-      $('#aver').text('Total: ' + total);
-    }
-});
 
 $( document ).ready(function() {
     subjectOption();
