@@ -2,31 +2,48 @@ $(document).on('submit','#grades',function(e){
     e.preventDefault();
     let s = $("#subj").val();
     let g = $("#gra").val();
-    let s1 = $("#sub1").val();
     let s2 = $("#none").val();
     let k = "";
 
     if (s == s2 || g == k) {
-        alert("Select Subject or Enter Grade!!")
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Invalid Subject!",
+            footer: '<a target="_blank" href="https://www.google.com">Why do I have this issue? </a>'
+          });
     }else {
      
         if(g>100) {
-            $("#rate").append(`<div>Invalid</div>`);
+            alert("Enter Invalid Grade")
         }else if(g>=98) {
             $("#rate").append(`<div>With Highest Honor</div>`);
+            
         }else if(g>=95) {
             $("#rate").append(`<div>Highest Honor</div>`);
+           
         }else if(g>=90){
             $("#rate").append(`<div>With Honor</div>`);
+           
         }else if(g>=75) {
-                $("#rate").append(`<div>PASSED</div>`);   
+            $("#rate").append(`<div>PASSED</div>`);
+               
         }else if(g<=74 && g>=65){
             $("#rate").append(`<div>Failed</div>`);
+           
         }else {
-            alert("Invalid Grade")
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Invalid Subject!",
+                footer: '<a href="#">Why do I have this issue?</a>'
+              });
         }
-        
-        if (g > 65) {
+
+        $("#subj option:selected").addClass("d-none");
+        $("#subj").val(1);
+
+        if (g > 64 && g < 101) {
 
             $("#sub1").append(`<div>${s}</div>`);
             
@@ -37,11 +54,28 @@ $(document).on('submit','#grades',function(e){
     }
     
 })
-$(document).on('click','#clr',function(e){
-    e.preventDefault();
-    let c = $("#none").val();
-    $("#subj").val(c);
-    $("#gra").val("");
+$(document).on('click','#clr',function(){
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, restore it!"
+      }).then((result) => {
+        if (result.isConfirmed) {
+            subjectOption();
+            $("#gra").val("");
+
+          Swal.fire({
+            title: "Data Restored!",
+            text: "Your file has been restored.",
+            icon: "success"
+          });
+        }
+      });
+    
 })
 $(document).on('click','#clrn',function(g) {
     g.preventDefault();
@@ -49,7 +83,41 @@ $(document).on('click','#clrn',function(g) {
 })
 $(document).on('click','#clres',function(a) {
     a.preventDefault();
-    $("#sub1").html("");
-    $("#grad").html("");
-    $("#rate").html("");
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, Clear it!"
+      }).then((result) => {
+        if (result.isConfirmed) {
+            $("#sub1").html("");
+            $("#grad").html("");
+            $("#rate").html("");
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success"
+          });
+        }
+      });
+    
 })
+function subjectOption(){
+    $("#subj").html(`<option id="none" value="1" selected>Select Subject</option>
+    <option value="English">English</option>
+    <option value="Math">Math</option>
+    <option value="Science">Science</option>
+    <option value="AP">AP</option>
+    <option value="Filipino">Filipino</option>
+    <option value="P.E">P.E</option>
+    <option value="Art">Art</option>
+    <option value="History">History</option>
+    <option value="Music">Music</option>
+    <option value="IT">IT</option>`)
+}
+$( document ).ready(function() {
+    subjectOption();
+});
