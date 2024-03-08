@@ -3,11 +3,15 @@ $(document).on('submit','#grades',function(e){
     let s = $("#subj").val();
     let g = $("#gra").val();
     let s1 = $("#sub1").val();
+    let s2 = $("#none").val();
+    let k = "";
 
-   
-
-      if(g>100) {
-          $("#rate").append(`<div>Invalid</div>`);
+    if (s == s2 || g == k) {
+        alert("Select Subject or Enter Grade!!")
+    }else {
+     
+        if(g>100) {
+            $("#rate").append(`<div>Invalid</div>`);
         }else if(g>=98) {
             $("#rate").append(`<div>With Highest Honor</div>`);
         }else if(g>=95) {
@@ -28,11 +32,13 @@ $(document).on('submit','#grades',function(e){
         gra = parseInt(g);
         
         $("#grad").append(`<div> ${gra}</div>`);
+    }
     
 })
 $(document).on('click','#clr',function(e){
     e.preventDefault();
-    $("#subj").val("");
+    let c = $("#none").val();
+    $("#subj").val(c);
     $("#gra").val("");
 })
 $(document).on('click','#clrn',function(g) {
