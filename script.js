@@ -1,35 +1,34 @@
 $(document).on('submit','#grades',function(e){
     e.preventDefault();
-    s = $("#subj").val();
-    g = $("#gra").val();
+    let s = $("#subj").val();
+    let g = $("#gra").val();
+    let s1 = $("#sub1").val();
 
-    s1 = s[0];
-    s1 = s1.toUpperCase();
-    s = s1 + s.slice(1);    
    
-    if(g>=75 && g<=89) {
-        $("#rate").html(`<div>PASSED</div>`);
-    }else if(g>100) {
-        $("#rate").html(`<div>Invalid</div>`);
-    }else if(g>=98 && g<=100) {
-        $("#rate").html(`<div>With Highest Honor</div>`);
-    }else if(g>=95 && g<=97) {
-        $("#rate").html(`<div>Highest Honor</div>`);
-    }else if(g>=90 && g<=94){
-        $("#rate").html(`<div>With Honor</div>`);
-    }else if(g<=74 && g>=65){
-        $("#rate").html(`<div>Failed</div>`);
-    }else {
-        $("#rate").html(`<div>Invalid</div>`);
-    }
 
-
-    $("#sub1").html(`${s}`);
-
-    gra = parseInt(g);
-
-    $("#grad").html(`<div> ${gra}</div>`);
-
+      if(g>100) {
+          $("#rate").append(`<div>Invalid</div>`);
+        }else if(g>=98) {
+            $("#rate").append(`<div>With Highest Honor</div>`);
+        }else if(g>=95) {
+            $("#rate").append(`<div>Highest Honor</div>`);
+        }else if(g>=90){
+            $("#rate").append(`<div>With Honor</div>`);
+        }else if(g>=75) {
+                $("#rate").append(`<div>PASSED</div>`);   
+        }else if(g<=74){
+            $("#rate").append(`<div>Failed</div>`);
+        }else {
+            $("#rate").append(`<div>Invalid</div>`);
+        }
+        
+        
+        $("#sub1").append(`<div>${s}</div>`);
+        
+        gra = parseInt(g);
+        
+        $("#grad").append(`<div> ${gra}</div>`);
+    
 })
 $(document).on('click','#clr',function(e){
     e.preventDefault();
@@ -39,4 +38,10 @@ $(document).on('click','#clr',function(e){
 $(document).on('click','#clrn',function(g) {
     g.preventDefault();
     $("#names").val("");
+})
+$(document).on('click','#clres',function(a) {
+    a.preventDefault();
+    $("#sub1").html("");
+    $("#grad").html("");
+    $("#rate").html("");
 })
