@@ -13,24 +13,31 @@ $(document).on('submit','#grades',function(e){
             footer: '<a target="_blank" href="https://www.google.com">Why do I have this issue? </a>'
           });
     }else {
+
+        
      
         if(g>100) {
             alert("Enter Invalid Grade")
         }else if(g>=98) {
             $("#rate").append(`<div>With Highest Honor</div>`);
+            $("#subj option:selected").addClass("d-none");
             
         }else if(g>=95) {
             $("#rate").append(`<div>Highest Honor</div>`);
+            $("#subj option:selected").addClass("d-none");
            
         }else if(g>=90){
             $("#rate").append(`<div>With Honor</div>`);
+            $("#subj option:selected").addClass("d-none");
            
         }else if(g>=75) {
             $("#rate").append(`<div>PASSED</div>`);
+            $("#subj option:selected").addClass("d-none");
                
         }else if(g<=74 && g>=65){
             $("#rate").append(`<div>Failed</div>`);
-           
+            $("#subj option:selected").addClass("d-none");
+
         }else {
             Swal.fire({
                 icon: "error",
@@ -40,7 +47,7 @@ $(document).on('submit','#grades',function(e){
               });
         }
 
-        $("#subj option:selected").addClass("d-none");
+        
         $("#subj").val(1);
 
         if (g > 64 && g < 101) {
