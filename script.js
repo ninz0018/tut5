@@ -61,11 +61,11 @@ function calculateAverage() {
     let total = 0;
     let count = 0;
     $('.ent').each(function() {
-      total += parseInt($(this).text());
+      total = total + parseInt($(this).text());
       count++;
     });
     let average = total / count;
-    $('#aver').text(average);
+    $('#aver').text(average.toFixed(1));
 }
 
 $(document).on('click','#clgrad',function(){
@@ -140,7 +140,9 @@ function subjectOption(){
     <option value="Filipino">Filipino</option>
     <option value="P.E">P.E</option>
     <option value="Art">Art</option>
-    <option value="History">History</option>
-    <option value="Music">Music</option>
-    <option value="IT">IT</option>`)
+    <option value="E.S.P">E.S.P</option>
+    <option value="Mapeh">Music</option>
+    <option value="IT">IT</option>
+    <option value="Health">Health</option>
+    <option value="T.L.E">T.L.E</option>`)
 }
