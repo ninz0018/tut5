@@ -20,18 +20,20 @@ $(document).on('submit','#grades',function(e){
             $("#rate").append(`<div>With Honor</div>`);
         }else if(g>=75) {
                 $("#rate").append(`<div>PASSED</div>`);   
-        }else if(g<=74){
+        }else if(g<=74 && g>=65){
             $("#rate").append(`<div>Failed</div>`);
         }else {
-            $("#rate").append(`<div>Invalid</div>`);
+            alert("Invalid Grade")
         }
         
-        
-        $("#sub1").append(`<div>${s}</div>`);
-        
-        gra = parseInt(g);
-        
-        $("#grad").append(`<div> ${gra}</div>`);
+        if (g > 65) {
+
+            $("#sub1").append(`<div>${s}</div>`);
+            
+            gra = parseInt(g);
+            
+            $("#grad").append(`<div> ${gra}</div>`);
+        }
     }
     
 })
