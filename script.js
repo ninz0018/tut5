@@ -47,7 +47,9 @@ $(document).on('submit','#grades',function(e){
 
             $("#sub1").append(`<div>${s}</div>`);
             
+            gra = parseInt(g);
             
+            $("#grad").append(`<div> ${gra}</div>`);
         }
     }
     
