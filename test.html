@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Total Added Numbers</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      $('#ent').on('click', function(){
+        var number = $('#gra').val();
+        $('#numbersList').append('<li class="ent">' + number + '</li>');
+        calculateTotal();
+      });
+
+      function calculateTotal() {
+        var total = 0;
+        $('.ent').each(function() {
+          total += parseFloat($(this).text());
+        });
+        $('#total').text('Total: ' + total);
+      }
+    });
+  </script>
+</head>
+<body>
+  <input type="text" id="numberInput">
+  <button id="addNumber">Add Number</button>
+  <ul id="numbersList"></ul>
+  <div id="total"></div>
+</body>
+</html>
+

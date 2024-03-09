@@ -8,8 +8,8 @@ $(document).on('submit','#grades',function(e){
     if (s == s2 || g == k) {
         Swal.fire({
             icon: "error",
-            title: "Oops...",
-            text: "Invalid Subject!",
+            title: "Select Subject or Enter Grade!",
+            text: "Try again!",
             footer: '<a target="_blank" href="https://www.google.com">Why do I have this issue? </a>'
           });
     }else {
@@ -35,7 +35,7 @@ $(document).on('submit','#grades',function(e){
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
-                text: "Invalid Subject!",
+                text: "Invalid Grade!",
                 footer: '<a href="#">Why do I have this issue?</a>'
               });
         }
@@ -47,30 +47,28 @@ $(document).on('submit','#grades',function(e){
 
             $("#sub1").append(`<div>${s}</div>`);
             
-            gra = parseInt(g);
             
-            $("#grad").append(`<div> ${gra}</div>`);
         }
     }
     
 })
 $(document).on('click','#clr',function(){
     Swal.fire({
-        title: "Are you sure?",
+        title: "Restore all Subject?",
         text: "You won't be able to revert this!",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, restore it!"
+        confirmButtonText: "Yes, Restore it!"
       }).then((result) => {
         if (result.isConfirmed) {
             subjectOption();
             $("#gra").val("");
 
           Swal.fire({
-            title: "Data Restored!",
-            text: "Your file has been restored.",
+            title: "Subject Restored!",
+            text: "Your file has been Restored.",
             icon: "success"
           });
         }
@@ -84,7 +82,7 @@ $(document).on('click','#clrn',function(g) {
 $(document).on('click','#clres',function(a) {
     a.preventDefault();
     Swal.fire({
-        title: "Are you sure?",
+        title: "Clear all results?",
         text: "You won't be able to revert this!",
         icon: "warning",
         showCancelButton: true,
@@ -97,14 +95,35 @@ $(document).on('click','#clres',function(a) {
             $("#grad").html("");
             $("#rate").html("");
           Swal.fire({
-            title: "Deleted!",
-            text: "Your file has been deleted.",
+            title: "Cleared!",
+            text: "Your file has been cleared.",
             icon: "success"
           });
         }
       });
     
 })
+
+$(document).ready(function(){
+    $('#ent').on('click', function(){
+      var number = $('#gra').val();
+      $('#grad').append('<li class="ent">' + number + '</li>');
+      calculateTotal();
+    });
+
+    function calculateTotal() {
+      var total = 0;
+      $('.ent').each(function() {
+        total += parseFloat($(this).text());
+      });
+      $('#aver').text('Total: ' + total);
+    }
+});
+
+$( document ).ready(function() {
+    subjectOption();
+});
+
 function subjectOption(){
     $("#subj").html(`<option id="none" value="1" selected>Select Subject</option>
     <option value="English">English</option>
@@ -118,6 +137,3 @@ function subjectOption(){
     <option value="Music">Music</option>
     <option value="IT">IT</option>`)
 }
-$( document ).ready(function() {
-    subjectOption();
-});
